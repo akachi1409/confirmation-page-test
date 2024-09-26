@@ -121,14 +121,10 @@
                 buttons: [
                     {id: 'buy', 
                     type: 'default', 
-                    text: `
-                    <div style="display: flex; align-items: center; background-color: #2980b9;"> 
-                        <span style="color: white">Buy</span>
-                    </div>
-                    `},
+                    text: 'Buy'},
                 ]
             }, function(btn) {
-                if (btn === 'link') {
+                if (btn === 'buy') {
                     Telegram.WebApp.openLink('https://ton.org/');
                 }
             });
