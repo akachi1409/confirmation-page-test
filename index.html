@@ -69,8 +69,6 @@
         </div>
         <h1>Modals</h1>
         <button onclick="Telegram.WebApp.showAlert('Hello World!');">Launch Alert</button>
-        <button onclick="showPopup();">Launch Popup</button>
-
         <h1>Links</h1>
         <ul>
             <li>
@@ -108,15 +106,9 @@
         Telegram.WebApp.MainButton.onClick(function () {
             showBuySpin()
         });	
-        
+
         Telegram.WebApp.MainButton.show();
         function showBuySpin() {
-            Telegram.WebApp.showPopup({
-                title: 'Buy Spin'
-            })
-        }
-        // Function to call showPopup API
-        function showPopup() {
             Telegram.WebApp.showPopup({
                 title: 'Title',
                 message: `
@@ -143,7 +135,9 @@
                     Telegram.WebApp.openLink('https://ton.org/');
                 }
             });
-        };
+        }
+        // Function to call showPopup API
+
 
         // Function to toggle main TWA button
         function toggleMainButton() {
