@@ -103,19 +103,19 @@
         Telegram.WebApp.MainButton.setParams({
             text: 'Buy Spin'
         });
+        Telegram.WebApp.MainButton.show();
         Telegram.WebApp.MainButton.onClick(function () {
             showBuySpin()
         });	
 
-        Telegram.WebApp.MainButton.show();
+        
         function showBuySpin() {
             Telegram.WebApp.showPopup({
                 title: 'Title',
                 message: `
                 <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="./assets/tapps.png" alt="" style="width: 100px; height: 100px; margin-bottom: 10px;">
-                    <p style="font-weight: bold; color: #333;">Are you out of Spins?</p>
-                    <p style="font-size: 14px; color: #666;">Buy for Telegram Stars</p>
+                    <p style="font-weight: bold; color: #333;">Out of Spins?</p>
+                    <p style="font-size: 14px; color: #666;">Buy for Stars</p>
                 </div>
                 `,
                 buttons: [
