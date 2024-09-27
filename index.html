@@ -121,11 +121,7 @@
         }
 
         button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            display: flex; align-items: center; background-color: #2980b9; padding: 10px 20px; border-radius: 5px;
         }
 
     </style>
@@ -136,24 +132,7 @@
         <div align="center">
             <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
         </div>
-        <h1>Modals</h1>
-        <button onclick="Telegram.WebApp.showAlert('Hello World!');">Launch Alert</button>
-        <h1>Links</h1>
-        <ul>
-            <li>
-                <a href="javascript:Telegram.WebApp.openTelegramLink('https://t.me/trendingapps');">Open link within Telegram</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://ton.org/');">Open link in external browser</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://telegra.ph/api',{try_instant_view:true});">Open link inside Telegram webview</a>
-            </li>
-        </ul>
-
-        <h1>Buttons</h1>
-        <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
-        <button onclick="toggleMainButton();">Toggle Main Button</button>
+        <h1>This is sample for confirmation</h1>
 
         <div id="modal-2" class="jw-modal">
             <div class="jw-modal-body">
@@ -161,22 +140,19 @@
                 <h1>Are you out of Spins?</h1>
                 <p style="padding-bottom: 1px;">Buy For Telegram Spins</p>
                 
-                <div style="display: flex; align-items: center; background-color: #2980b9; padding: 2px 42px; border-radius: 5px;"> 
-                    <button onclick="closeModal()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
-                            <path d="M11.354 2.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L5 8.293l5.646-5.647a.5.5 0 0 1 .708 0z"/>
-                        </svg>
-                        47
-                    </button>
-                    <!-- <span style="color: white; margin-left: 5px;">Buy</span> -->
-                </div>
+                <button onclick="showPopup()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+                        <path d="M11.354 2.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L5 8.293l5.646-5.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    47
+                </button>
             </div>
         </div>
 
         <div id="confirmation" class="confirmation">
             <h2>Confirm Your Purchase</h2>
             <p>Do you wannt to buy Spin with your star?</p>
-            <button></button>
+            <button>Buy</button>
         </div>
     </main>
     <div id="viewport"></div>
@@ -205,8 +181,11 @@
         function showBuySpin() {
             openModal('modal-2')
         }
-        // Function to call showPopup API
 
+        function showPopup() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.add("show");
+        }
 
         // Function to toggle main TWA button
         function toggleMainButton() {
