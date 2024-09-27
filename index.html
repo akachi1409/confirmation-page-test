@@ -187,8 +187,16 @@
         }
 
         function showPopup() {
-            var popup = document.getElementById("confirmation");
-            popup.classList.add("show");
+            // var popup = document.getElementById("confirmation");
+            // popup.classList.add("show");
+            Telegram.WebApp.showConfirm({
+                title: 'Title',
+                message: 'Some message',
+                button: [
+                    {id: 'confirm', type:'default', text: 'Confirm'},
+                    {type: 'cancel'}
+                ]
+            })
         }
 
         // Function to toggle main TWA button
