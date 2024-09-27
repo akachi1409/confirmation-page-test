@@ -59,6 +59,43 @@
         #viewport-params-expand {
             top: 30px;
         }
+
+        
+        /* MODAL STYLES
+        -------------------------------*/
+        .jw-modal {
+            /* modals are hidden by default */
+            display: none;
+
+            /* modal container fixed across whole screen */
+            position: fixed;
+            inset: 0;
+
+            /* z-index must be higher than everything else on the page */
+            z-index: 10000;
+            
+            /* semi-transparent black background exposed by padding */
+            background-color: rgba(0, 0, 0, .75);
+            padding: 40px;
+
+            /* enables scrolling for tall modals */
+            overflow: auto;
+        }
+
+        .jw-modal.open {
+            display: block;
+        }
+
+        .jw-modal-body {
+            padding: 20px;
+            background: #fff;
+        }
+
+        body.jw-modal-open {
+            /* body overflow is hidden to hide main scrollbar when modal window is open */
+            overflow: hidden;
+        }
+
     </style>
 </head>
 
@@ -85,6 +122,14 @@
         <h1>Buttons</h1>
         <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
         <button onclick="toggleMainButton();">Toggle Main Button</button>
+
+        <div id="modal-2" class="jw-modal">
+            <div class="jw-modal-body">
+                <h1>A tall modal popup</h1>
+                <p style="padding-bottom: 1px;">Close with the button below or by clicking the background.</p>
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
     </main>
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
@@ -110,25 +155,7 @@
 
         
         function showBuySpin() {
-            Telegram.WebApp.showPopup({
-                title: 'Title',
-                message: `
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <p style="font-weight: bold; color: #333;">Out of Spins?</p>
-                    <p style="font-size: 14px; color: #666;">Buy for Stars</p>
-                </div>
-                `,
-                parse_mode: 'HTML',
-                buttons: [
-                    {id: 'buy', 
-                    type: 'default', 
-                    text: 'Buy'},
-                ]
-            }, function(btn) {
-                if (btn === 'buy') {
-                    Telegram.WebApp.openLink('https://ton.org/');
-                }
-            });
+            openModal('modal-2')
         }
         // Function to call showPopup API
 
@@ -149,6 +176,18 @@
 
             var expandEl = document.querySelector('#viewport-params-expand');
             expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
+        }
+
+        // open modal by id
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+            document.body.classList.add('jw-modal-open');
+        }
+
+        // close currently open modal
+        function closeModal() {
+            document.querySelector('.jw-modal.open').classList.remove('open');
+            document.body.classList.remove('jw-modal-open');
         }
 
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
