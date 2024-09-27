@@ -186,17 +186,24 @@
             openModal('modal-2')
         }
 
-        function showPopup() {
+        async function showPopup() {
             // var popup = document.getElementById("confirmation");
             // popup.classList.add("show");
-            Telegram.WebApp.showConfirm({
-                title: 'Title',
-                message: 'Some message',
-                button: [
-                    {id: 'confirm', type:'default', text: 'Confirm'},
-                    {type: 'cancel'}
-                ]
-            })
+            const url = "https://telegram-star-backend.onrender.com/generate-invoice";
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+                }
+
+                const json = await response.json();
+                Telegram.WebApp.openInvoice(json.invoiceLink, (status)=> {
+                    console.log('status', status)
+                })
+                console.log(json);
+            } catch (error) {
+                console.error(error.message);
+            }
         }
 
         // Function to toggle main TWA button
